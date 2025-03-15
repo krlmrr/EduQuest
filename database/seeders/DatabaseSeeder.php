@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Advisor;
 use App\Models\Course;
 use App\Models\Student;
 use App\Models\User;
@@ -16,6 +17,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
+
+        Advisor::factory(20)->create();
 
         $students = Student::factory(100)->create();
 
