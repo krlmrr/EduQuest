@@ -12,6 +12,10 @@ return new class extends Migration
             $table->uuid('id')
                 ->primary()
                 ->autoIncrement();
+            $table->foreignUuid('advisor_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->string('name');
             $table->string('email')
                 ->unique();

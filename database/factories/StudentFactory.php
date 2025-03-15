@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Advisor;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,7 @@ class StudentFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'advisor_id' => Advisor::inRandomOrder()->first()->id,
             'email' => fake()->unique()->email(),
             'bio' => fake()->paragraph(),
             'date_of_birth' => fake()->date(),
