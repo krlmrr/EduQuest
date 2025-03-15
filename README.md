@@ -7,3 +7,7 @@
 4. Run `php artisan key:generate`
 5. Run `php artisan migrate:fresh --seed`
 6. Run `php artisan make:filament-user`
+
+## Usage
+- The admin panel is available at `/admin`
+- You can login with the credentials `admin@example.com` and `password`
