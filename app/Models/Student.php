@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Student extends Model
 {
@@ -20,4 +21,10 @@ class Student extends Model
     protected $casts = [
         'date_of_birth' => 'date:Y-m-d',
     ];
+
+    /** @return BelongsToMany<Course, $this> */
+    public function courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class);
+    }
 }
