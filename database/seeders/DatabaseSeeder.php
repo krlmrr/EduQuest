@@ -17,8 +17,19 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        Student::factory(100)->create();
+        $students = Student::factory(100)->create();
 
         Course::factory(20)->create();
+
+        $students->map(function ($student) {
+            $courses = Course::query()
+                ->inRandomOrder()
+                ->get()
+                ->take(fake()->numberBetween(3, 10));
+
+            $courses->each(function ($course) use ($student) {
+                $student->courses()->attach($course->id);
+            });
+        });
     }
 }
