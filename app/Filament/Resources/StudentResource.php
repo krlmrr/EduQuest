@@ -31,7 +31,8 @@ class StudentResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('bio')
                     ->columnSpanFull(),
-                SpatieMediaLibraryFileUpload::make('avatar'),
+                SpatieMediaLibraryFileUpload::make('avatar')
+                    ->collection('students'),
             ]);
     }
 

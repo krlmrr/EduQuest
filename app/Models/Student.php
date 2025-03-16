@@ -25,6 +25,13 @@ class Student extends Model implements HasMedia
         'date_of_birth' => 'date:Y-m-d',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('students')
+            ->useDisk('public');
+    }
+
     /** @return BelongsTo<Advisor, $this> */
     public function advisor(): BelongsTo
     {
