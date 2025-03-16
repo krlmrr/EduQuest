@@ -37,11 +37,13 @@ class CoursesRelationManager extends RelationManager
             ])
             ->headerActions([
                 AttachAction::make(),
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->slideOver(),
             ])
             ->actions([
                 DetachAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->slideOver(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

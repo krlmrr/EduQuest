@@ -23,10 +23,12 @@ class StudentResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\DatePicker::make('date_of_birth')
                     ->required(),
                 Forms\Components\Textarea::make('bio')

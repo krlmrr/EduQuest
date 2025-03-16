@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\AdvisorResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
@@ -22,6 +23,16 @@ class StudentsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\DatePicker::make('date_of_birth')
+                    ->required(),
+                Forms\Components\Textarea::make('bio')
+                    ->columnSpanFull(),
+                SpatieMediaLibraryFileUpload::make('avatar')
+                    ->collection('students'),
             ]);
     }
 
@@ -37,11 +48,13 @@ class StudentsRelationManager extends RelationManager
             ])
             ->headerActions([
                 AssociateAction::make(),
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->slideOver(),
             ])
             ->actions([
                 DissociateAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->slideOver(),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

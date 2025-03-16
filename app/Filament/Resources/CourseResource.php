@@ -21,7 +21,8 @@ class CourseResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
