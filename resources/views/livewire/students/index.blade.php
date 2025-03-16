@@ -38,7 +38,7 @@ function getInitials($name)
         @foreach ($students as $student)
             <x-containers.card>
                 <div class="flex items-center gap-3">
-                    @if(!empty($student->getMedia("*")->first()))
+                    @if (!empty($student->getMedia("*")->first()))
                         <img src="{{ $student->getMedia("*")->first()->getFullUrl() }}"
                             alt="{{ $student->name }}'s profile photo" class="w-10 h-10 rounded-full" />
                     @else
@@ -47,15 +47,15 @@ function getInitials($name)
 
                     <p class="flex flex-col">
                         <span class="font-bold">
-                            {{  $student->name }}
+                            {{ $student->name }}
                         </span>
 
-                        {{ $student->email  }}
+                        {{ $student->email }}
                     </p>
                 </div>
 
                 <p class="mt-4">
-                    {{ $student->bio  }}
+                    {{ $student->bio }}
                 </p>
             </x-containers.card>
         @endforeach
