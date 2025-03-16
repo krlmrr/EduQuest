@@ -3,15 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StudentResource\Pages;
-use App\Filament\Resources\StudentResource\RelationManagers;
+use App\Filament\Resources\StudentResource\RelationManagers\CoursesRelationManager;
 use App\Models\Student;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class StudentResource extends Resource
 {
@@ -32,6 +31,7 @@ class StudentResource extends Resource
                     ->required(),
                 Forms\Components\Textarea::make('bio')
                     ->columnSpanFull(),
+                SpatieMediaLibraryFileUpload::make('avatar'),
             ]);
     }
 
@@ -74,7 +74,7 @@ class StudentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            'courses' => CoursesRelationManager::class,
         ];
     }
 

@@ -3,15 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AdvisorResource\Pages;
-use App\Filament\Resources\AdvisorResource\RelationManagers;
+use App\Filament\Resources\AdvisorResource\RelationManagers\CoursesRelationManager;
+use App\Filament\Resources\AdvisorResource\RelationManagers\StudentsRelationManager;
 use App\Models\Advisor;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AdvisorResource extends Resource
 {
@@ -67,7 +66,8 @@ class AdvisorResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentsRelationManager::class,
+            CoursesRelationManager::class,
         ];
     }
 
