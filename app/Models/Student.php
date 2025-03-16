@@ -22,7 +22,7 @@ class Student extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'date_of_birth' => 'date:Y-m-d',
+        'date_of_birth' => 'date:d/m/Y',
     ];
 
     public function registerMediaCollections(): void
