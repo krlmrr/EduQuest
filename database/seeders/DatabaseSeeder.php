@@ -2,22 +2,37 @@
 
 namespace Database\Seeders;
 
+use App\Models\Advisor;
+use App\Models\Course;
+use App\Models\Student;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
         ]);
+
+        Advisor::factory(20)->create();
+
+        $students = Student::factory(100)->create();
+
+        Course::factory(20)->create();
+
+        $students->map(function ($student) {
+            $courses = Course::query()
+                ->inRandomOrder()
+                ->get()
+                ->take(fake()->numberBetween(3, 10));
+
+            $courses->each(function ($course) use ($student) {
+                $student->courses()->attach($course->id);
+            });
+        });
     }
 }
