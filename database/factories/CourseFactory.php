@@ -19,7 +19,7 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'advisor_id' => Advisor::inRandomOrder()->first()->id,
+            'advisor_id' => Advisor::inRandomOrder()->first()->id ?? Advisor::factory()->create()->id,
 
             // Create a fake course title with a random amount of words (between 2 and 5 words),
             // and capitalize them to make them look like real course titles.

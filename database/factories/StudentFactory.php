@@ -21,8 +21,8 @@ class StudentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->firstName() . ' ' . fake()->lastName(),
-            'advisor_id' => Advisor::inRandomOrder()->first()->id,
+            'name' => fake()->firstName().' '.fake()->lastName(),
+            'advisor_id' => Advisor::inRandomOrder()->first()->id ?? Advisor::factory()->create()->id,
             'email' => fake()->unique()->email(),
             'bio' => fake()->paragraph(),
             'date_of_birth' => fake()->date(),
